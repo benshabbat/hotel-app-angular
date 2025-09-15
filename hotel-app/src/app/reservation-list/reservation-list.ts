@@ -17,10 +17,7 @@ export class ReservationList {
     this.reservationService.deleteReservation(id);
     this.reservations = this.reservationService.getReservations();
   } 
-  updateReservation(updatedReservation: ReservationI) {
-    this.reservationService.updateReservation(updatedReservation);
-    this.reservations = this.reservationService.getReservations();
-  } 
+
   ngOnInit() {
     this.reservations = this.reservationService.getReservations();
   }
