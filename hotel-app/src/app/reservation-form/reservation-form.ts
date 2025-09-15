@@ -12,10 +12,10 @@ import { Reservation } from '../reservation/reservation';
 })
 export class ReservationForm {
   reservationForm: FormGroup;
-  reservationService!: Reservation;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private reservationService: Reservation) {
     this.reservationForm = this.formBuilder.group({
+      id: [Math.floor(Math.random() * 10000)],
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       checkIn: ['', Validators.required],
