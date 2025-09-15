@@ -1,8 +1,27 @@
 import { Injectable } from '@angular/core';
+import { ReservationI } from '../models/reservation';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class Reservation {
-  
+  private reservations: ReservationI[] = [];
+  getReservations() {
+    return this.reservations;
+  }
+  getReservationById(id: number) {
+    return this.reservations.find((res) => res.id === id);
+  }
+  addReservation(reservation: ReservationI) {
+    this.reservations.push(reservation);
+  }
+  deleteReservation(id: number) {
+    this.reservations = this.reservations.filter((res) => res.id !== id);
+  }
+  updateReservation(updatedReservation: ReservationI) {
+    const index = this.reservations.findIndex((res) => res.id === updatedReservation.id);
+    if (index !== -1) {
+      this.reservations[index] = updatedReservation;
+    }
+  }
 }

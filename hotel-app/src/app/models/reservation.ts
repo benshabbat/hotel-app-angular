@@ -1,4 +1,4 @@
-export interface Reservation {
+export interface ReservationI {
   id: number;
   guestName: string;
   guestEmail: string;
