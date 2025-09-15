@@ -14,6 +14,7 @@ export class Reservation {
   }
   addReservation(reservation: ReservationI) {
     this.reservations.push(reservation);
+    console.log(this.reservations);
   }
   deleteReservation(id: number) {
     this.reservations = this.reservations.filter((res) => res.id !== id);
