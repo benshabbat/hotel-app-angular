@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Reservation } from '../reservation/reservation';
+import { ReservationI } from '../models/reservation';
 
 
 @Component({
@@ -8,5 +10,11 @@ import { Component } from '@angular/core';
   styleUrl: './reservation-list.css'
 })
 export class ReservationList {
+  reservations: ReservationI[] = [];
+  constructor(private reservationService: Reservation) {
+  }
 
+  ngOnInit() {
+    this.reservations = this.reservationService.getReservations();
+  }
 }

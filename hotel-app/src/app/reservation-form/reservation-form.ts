@@ -16,10 +16,10 @@ export class ReservationForm {
   constructor(private formBuilder: FormBuilder, private reservationService: Reservation) {
     this.reservationForm = this.formBuilder.group({
       id: [Math.floor(Math.random() * 10000)],
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      checkIn: ['', Validators.required],
-      checkOut: ['', Validators.required],
+      guestName: ['', Validators.required],
+      guestEmail: ['', [Validators.required, Validators.email]],
+      checkInDate: ['', Validators.required],
+      checkOutDate: ['', Validators.required],
       roomNumber: ['', [Validators.required, Validators.min(1)]],
     });
   }

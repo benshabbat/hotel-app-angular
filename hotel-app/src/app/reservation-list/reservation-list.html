@@ -2,3 +2,12 @@
 
 <h2>Reservation List</h2>
 <p>reservation-list works!</p>
+
+<ul>
+    @for(reservation of reservations; track reservation.id){
+        <li>
+            {{ reservation.guestName }} - {{ reservation.guestEmail }} - {{ reservation.checkInDate }} to {{ reservation.checkOutDate }} - Room {{ reservation.roomNumber }}
+        </li>
+    }
+</ul>
+

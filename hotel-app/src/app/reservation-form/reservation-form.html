@@ -4,29 +4,29 @@
 <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="name">Name:</label>
-    <input id="name" formControlName="name" />
-    @if(reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched){
+    <input id="name" formControlName="guestName" />
+    @if(reservationForm.get('guestName')?.invalid && reservationForm.get('guestName')?.touched){
     <div class="error">Name is required.</div>
     }
   </div>
   <div class="form-group">
     <label for="email">Email:</label>
-    <input id="email" formControlName="email" />
-    @if(reservationForm.get('email')?.invalid && reservationForm.get('email')?.touched) {
+    <input id="email" formControlName="guestEmail" />
+    @if(reservationForm.get('guestEmail')?.invalid && reservationForm.get('guestEmail')?.touched) {
     <div class="error">Valid email is required.</div>
     }
   </div>
   <div class="form-group">
     <label for="checkIn">Check-in Date:</label>
-    <input id="checkIn" formControlName="checkIn" type="date" />
-    @if(reservationForm.get('checkIn')?.invalid && reservationForm.get('checkIn')?.touched) {
+    <input id="checkIn" formControlName="checkInDate" type="date" />
+    @if(reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched) {
     <div class="error">Check-in date is required.</div>
     }
   </div>
   <div class="form-group">
     <label for="checkOut">Check-out Date:</label>
-    <input id="checkOut" formControlName="checkOut" type="date" />
-    @if(reservationForm.get('checkOut')?.invalid && reservationForm.get('checkOut')?.touched) {
+    <input id="checkOut" formControlName="checkOutDate" type="date" />
+    @if(reservationForm.get('checkOutDate')?.invalid && reservationForm.get('checkOutDate')?.touched) {
     <div class="error">Check-out date is required.</div>
     }
   </div>
