@@ -1,4 +1,41 @@
-
-
 <h2>New Reservation</h2>
 <p>reservation-form works!</p>
+
+<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" />
+    @if(reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched){
+    <div class="error">Name is required.</div>
+    }
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input id="email" formControlName="email" />
+    @if(reservationForm.get('email')?.invalid && reservationForm.get('email')?.touched) {
+    <div class="error">Valid email is required.</div>
+    }
+  </div>
+  <div class="form-group">
+    <label for="checkIn">Check-in Date:</label>
+    <input id="checkIn" formControlName="checkIn" type="date" />
+    @if(reservationForm.get('checkIn')?.invalid && reservationForm.get('checkIn')?.touched) {
+    <div class="error">Check-in date is required.</div>
+    }
+  </div>
+  <div class="form-group">
+    <label for="checkOut">Check-out Date:</label>
+    <input id="checkOut" formControlName="checkOut" type="date" />
+    @if(reservationForm.get('checkOut')?.invalid && reservationForm.get('checkOut')?.touched) {
+    <div class="error">Check-out date is required.</div>
+    }
+  </div>
+  <div class="form-group">
+    <label for="roomNumber">Room Number:</label>
+    <input id="roomNumber" formControlName="roomNumber" type="number" min="1" />
+    @if(reservationForm.get('roomNumber')?.invalid && reservationForm.get('roomNumber')?.touched) {
+    <div class="error">Room number is required and must be greater than 0.</div>
+    }
+  </div>
+  <button type="submit" [disabled]="!reservationForm.valid">Submit Reservation</button>
+</form>
