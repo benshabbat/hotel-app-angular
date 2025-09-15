@@ -25,11 +25,13 @@ export class Reservation {
   }
   deleteReservation(id: number) {
     this.reservations = this.reservations.filter((res) => res.id !== id);
+    localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
   updateReservation(updatedReservation: ReservationI) {
     const index = this.reservations.findIndex((res) => res.id === updatedReservation.id);
     if (index !== -1) {
       this.reservations[index] = updatedReservation;
     }
+    localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }
 }
