@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Reservation } from '../reservation/reservation';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-reservation-form',
@@ -15,7 +16,8 @@ export class ReservationForm {
   constructor(
     private formBuilder: FormBuilder,
     private reservationService: Reservation,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.reservationForm = this.formBuilder.group({
       guestName: ['', Validators.required],
@@ -31,6 +33,16 @@ export class ReservationForm {
       this.reservationService.addReservation(this.reservationForm.value);
       this.reservationForm.reset();
       this.router.navigate(['/list']);
+    }
+  }
+
+  ngOnInit() {
+    const reservationId = this.route.snapshot.paramMap.get('id');
+    if (reservationId) {
+      const reservation = this.reservationService.getReservationById(+reservationId);
+      if (reservation) {
+        this.reservationForm.patchValue(reservation);
+      }
     }
   }
 }
