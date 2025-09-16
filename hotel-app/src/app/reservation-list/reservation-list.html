@@ -1,6 +1,8 @@
 <h2>Reservation List</h2>
 <p>reservation-list works!</p>
-
+@if(reservations.length === 0){
+<p>No reservations found.</p>
+}
 <ul>
   @for(reservation of reservations; track reservation.id){
   <li>
