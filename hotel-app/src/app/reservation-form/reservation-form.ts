@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Reservation } from '../reservation/reservation';
-
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservation-form',
@@ -13,7 +12,11 @@ import { Reservation } from '../reservation/reservation';
 export class ReservationForm {
   reservationForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private reservationService: Reservation) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private reservationService: Reservation,
+    private router: Router
+  ) {
     this.reservationForm = this.formBuilder.group({
       id: [Math.floor(Math.random() * 10000)],
       guestName: ['', Validators.required],
@@ -28,6 +31,7 @@ export class ReservationForm {
     if (this.reservationForm.valid) {
       this.reservationService.addReservation(this.reservationForm.value);
       this.reservationForm.reset();
+      this.router.navigate(['/list']);
     }
   }
 }
