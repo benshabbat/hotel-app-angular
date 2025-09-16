@@ -20,6 +20,7 @@ export class Reservation {
     return this.reservations.find((res) => res.id === id);
   }
   addReservation(reservation: ReservationI) {
+    reservation.id = Math.floor(Math.random() * 10000);
     this.reservations.push(reservation);
     localStorage.setItem('reservations', JSON.stringify(this.reservations));
   }

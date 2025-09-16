@@ -18,7 +18,6 @@ export class ReservationForm {
     private router: Router
   ) {
     this.reservationForm = this.formBuilder.group({
-      id: [Math.floor(Math.random() * 10000)],
       guestName: ['', Validators.required],
       guestEmail: ['', [Validators.required, Validators.email]],
       checkInDate: ['', Validators.required],
