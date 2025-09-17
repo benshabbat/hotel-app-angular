@@ -1,15 +1,67 @@
-<h2>Reservation List</h2>
-<p>reservation-list works!</p>
-@if(reservations.length === 0){
-<p>No reservations found.</p>
-}
-<ul>
-  @for(reservation of reservations; track reservation.id){
-  <li>
-    {{ reservation.guestName }} - {{ reservation.guestEmail }} - {{ reservation.checkInDate }} to
-    {{ reservation.checkOutDate }} - Room {{ reservation.roomNumber }}
-  </li>
-  <button (click)="deleteReservation(reservation.id)">Delete</button>
-  <button [routerLink]="['/edit', reservation.id]">Edit</button>
+<div class="list-container">
+  <div class="list-header">
+    <h2 class="list-title">Reservation List</h2>
+    <p class="list-subtitle">Manage and view all your hotel reservations</p>
+  </div>
+  
+  @if(reservations.length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">🏨</div>
+      <h3 class="empty-title">No Reservations Found</h3>
+      <p class="empty-description">
+        You don't have any reservations yet. Start by making your first booking!
+      </p>
+      <a routerLink="/new" class="empty-action">
+        📅 Make a Reservation
+      </a>
+    </div>
+  } @else {
+    <div class="reservations-grid">
+      @for(reservation of reservations; track reservation.id) {
+        <div class="reservation-card">
+          <div class="card-header">
+            <div class="guest-name">{{ reservation.guestName }}</div>
+            <div class="guest-email">{{ reservation.guestEmail }}</div>
+          </div>
+          
+          <div class="card-body">
+            <div class="reservation-details">
+              <div class="detail-item">
+                <span class="detail-icon">📅</span>
+                <div class="detail-content">
+                  <div class="detail-label">Check-in Date</div>
+                  <div class="detail-value">{{ reservation.checkInDate | date:'mediumDate' }}</div>
+                </div>
+              </div>
+              
+              <div class="detail-item">
+                <span class="detail-icon">📅</span>
+                <div class="detail-content">
+                  <div class="detail-label">Check-out Date</div>
+                  <div class="detail-value">{{ reservation.checkOutDate | date:'mediumDate' }}</div>
+                </div>
+              </div>
+              
+              <div class="detail-item">
+                <span class="detail-icon">🏠</span>
+                <div class="detail-content">
+                  <div class="detail-label">Room Number</div>
+                  <div class="detail-value">Room {{ reservation.roomNumber }}</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card-actions">
+              <a [routerLink]="['/edit', reservation.id]" class="btn btn-edit">
+                ✏️ Edit
+              </a>
+              <button (click)="deleteReservation(reservation.id)" class="btn btn-delete">
+                🗑️ Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
   }
-</ul>
+</div>

@@ -1,8 +1,11 @@
-<div>
+<div class="app-container">
   <nav>
-    <a routerLink="/" routerLinkActive="active">Home</a>
-    <a routerLink="/new" routerLinkActive="active">New Reservation</a>
-    <a routerLink="/list" routerLinkActive="active">Reservation List</a>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">🏠 Home</a>
+    <a routerLink="/new" routerLinkActive="active">📅 New Reservation</a>
+    <a routerLink="/list" routerLinkActive="active">📋 Reservation List</a>
   </nav>
+  
+  <main>
+    <router-outlet/>
+  </main>
 </div>
-<router-outlet/>

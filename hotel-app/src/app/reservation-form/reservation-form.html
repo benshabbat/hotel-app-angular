@@ -1,41 +1,85 @@
-<h2>New Reservation</h2>
-<p>reservation-form works!</p>
+<div class="form-container">
+  <div class="form-header">
+    <h2 class="form-title">New Reservation</h2>
+    <p class="form-subtitle">Fill out the form below to make your hotel reservation</p>
+  </div>
 
-<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="name">Name:</label>
-    <input id="name" formControlName="guestName" />
-    @if(reservationForm.get('guestName')?.invalid && reservationForm.get('guestName')?.touched){
-    <div class="error">Name is required.</div>
-    }
-  </div>
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input id="email" formControlName="guestEmail" />
-    @if(reservationForm.get('guestEmail')?.invalid && reservationForm.get('guestEmail')?.touched) {
-    <div class="error">Valid email is required.</div>
-    }
-  </div>
-  <div class="form-group">
-    <label for="checkIn">Check-in Date:</label>
-    <input id="checkIn" formControlName="checkInDate" type="date" />
-    @if(reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched) {
-    <div class="error">Check-in date is required.</div>
-    }
-  </div>
-  <div class="form-group">
-    <label for="checkOut">Check-out Date:</label>
-    <input id="checkOut" formControlName="checkOutDate" type="date" />
-    @if(reservationForm.get('checkOutDate')?.invalid && reservationForm.get('checkOutDate')?.touched) {
-    <div class="error">Check-out date is required.</div>
-    }
-  </div>
-  <div class="form-group">
-    <label for="roomNumber">Room Number:</label>
-    <input id="roomNumber" formControlName="roomNumber" type="number" min="1" />
-    @if(reservationForm.get('roomNumber')?.invalid && reservationForm.get('roomNumber')?.touched) {
-    <div class="error">Room number is required and must be greater than 0.</div>
-    }
-  </div>
-  <button type="submit" [disabled]="!reservationForm.valid">Submit Reservation</button>
-</form>
+  <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()" class="reservation-form">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="name" class="form-label">Guest Name</label>
+        <input 
+          id="name" 
+          formControlName="guestName" 
+          class="form-input"
+          placeholder="Enter your full name"
+        />
+        @if(reservationForm.get('guestName')?.invalid && reservationForm.get('guestName')?.touched){
+          <div class="error-message">Guest name is required</div>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="email" class="form-label">Email Address</label>
+        <input 
+          id="email" 
+          formControlName="guestEmail" 
+          class="form-input"
+          type="email"
+          placeholder="Enter your email address"
+        />
+        @if(reservationForm.get('guestEmail')?.invalid && reservationForm.get('guestEmail')?.touched) {
+          <div class="error-message">Valid email address is required</div>
+        }
+      </div>
+    </div>
+
+    <div class="form-grid two-columns">
+      <div class="form-group">
+        <label for="checkIn" class="form-label">Check-in Date</label>
+        <input 
+          id="checkIn" 
+          formControlName="checkInDate" 
+          type="date" 
+          class="form-input"
+        />
+        @if(reservationForm.get('checkInDate')?.invalid && reservationForm.get('checkInDate')?.touched) {
+          <div class="error-message">Check-in date is required</div>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="checkOut" class="form-label">Check-out Date</label>
+        <input 
+          id="checkOut" 
+          formControlName="checkOutDate" 
+          type="date" 
+          class="form-input"
+        />
+        @if(reservationForm.get('checkOutDate')?.invalid && reservationForm.get('checkOutDate')?.touched) {
+          <div class="error-message">Check-out date is required</div>
+        }
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="roomNumber" class="form-label">Room Number</label>
+      <select id="roomNumber" formControlName="roomNumber" class="form-input form-select">
+        <option value="">Select a room number</option>
+        <option value="101">Room 101 - Standard</option>
+        <option value="102">Room 102 - Standard</option>
+        <option value="201">Room 201 - Deluxe</option>
+        <option value="202">Room 202 - Deluxe</option>
+        <option value="301">Room 301 - Suite</option>
+        <option value="302">Room 302 - Suite</option>
+      </select>
+      @if(reservationForm.get('roomNumber')?.invalid && reservationForm.get('roomNumber')?.touched) {
+        <div class="error-message">Room selection is required</div>
+      }
+    </div>
+    
+    <button type="submit" [disabled]="!reservationForm.valid" class="submit-button">
+      🏨 Submit Reservation
+    </button>
+  </form>
+</div>
