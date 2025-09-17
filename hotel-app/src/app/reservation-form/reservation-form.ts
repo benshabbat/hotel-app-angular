@@ -30,15 +30,16 @@ export class ReservationForm {
   }
 
   onSubmit() {
-    if (this.reservationId) {
-      const updatedReservation = { ...this.reservationForm.value, id: +this.reservationId };
-      this.reservationService.updateReservation(updatedReservation);
-      this.router.navigate(['/list']);
-    }
-    else if (this.reservationForm.valid) {
-      this.reservationService.addReservation(this.reservationForm.value);
-      this.reservationForm.reset();
-      this.router.navigate(['/list']);
+    if (this.reservationForm.valid) {
+      if (this.reservationId) {
+        const updatedReservation = { ...this.reservationForm.value, id: +this.reservationId };
+        this.reservationService.updateReservation(updatedReservation);
+        this.router.navigate(['/list']);
+      } else {
+        this.reservationService.addReservation(this.reservationForm.value);
+        this.reservationForm.reset();
+        this.router.navigate(['/list']);
+      }
     }
   }
 
