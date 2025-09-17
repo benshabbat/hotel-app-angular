@@ -32,11 +32,9 @@ export class ReservationForm {
   onSubmit() {
     if (this.reservationForm.valid) {
       if (this.reservationId) {
-        const updatedReservation = { ...this.reservationForm.value, id: +this.reservationId };
-        this.reservationService.updateReservation(updatedReservation);
+        this.reservationService.updateReservation(+this.reservationId, this.reservationForm.value);
       } else {
         this.reservationService.addReservation(this.reservationForm.value);
-        this.reservationForm.reset();
       }
       this.router.navigate(['/list']);
     }
