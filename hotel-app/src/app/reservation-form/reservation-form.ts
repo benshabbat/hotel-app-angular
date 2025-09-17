@@ -34,12 +34,11 @@ export class ReservationForm {
       if (this.reservationId) {
         const updatedReservation = { ...this.reservationForm.value, id: +this.reservationId };
         this.reservationService.updateReservation(updatedReservation);
-        this.router.navigate(['/list']);
       } else {
         this.reservationService.addReservation(this.reservationForm.value);
         this.reservationForm.reset();
-        this.router.navigate(['/list']);
       }
+      this.router.navigate(['/list']);
     }
   }
 
