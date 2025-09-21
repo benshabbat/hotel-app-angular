@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Reservation } from '../reservation/reservation';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ReservationI } from '../models/reservation';
 
 @Component({
   selector: 'app-reservation-form',
@@ -42,10 +43,11 @@ export class ReservationForm {
 
   ngOnInit() {
     if (this.reservationId) {
-      const reservation = this.reservationService.getReservationById(+this.reservationId);
-      if (reservation) {
-        this.reservationForm.patchValue(reservation);
-      }
+      this.reservationService.getReservationById(+this.reservationId).subscribe((reservation: ReservationI | undefined) => {
+        if (reservation) {
+          this.reservationForm.patchValue(reservation);
+        }
+      });
     }
   }
 }

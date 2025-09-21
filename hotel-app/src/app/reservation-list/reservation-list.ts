@@ -17,11 +17,12 @@ export class ReservationList {
   }
   deleteReservation(id: number) {
     this.reservationService.deleteReservation(id);
-    this.reservations = this.reservationService.getReservations();
   } 
 
 
   ngOnInit() {
-    this.reservations = this.reservationService.getReservations();
+    this.reservationService.getReservations().subscribe((data: ReservationI[]) => {
+      this.reservations = data;
+    });
   }
 }
