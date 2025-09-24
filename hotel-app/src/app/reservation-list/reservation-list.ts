@@ -16,7 +16,9 @@ export class ReservationList {
   constructor(private reservationService: Reservation) {
   }
   deleteReservation(id: number) {
-    this.reservationService.deleteReservation(id);
+    this.reservationService.deleteReservation(id).subscribe(() => {
+      console.log("Deleted reservation with id:", id);
+    });
   } 
 
 
